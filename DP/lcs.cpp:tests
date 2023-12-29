@@ -1,0 +1,8 @@
+[
+	{
+		"test": "abc\ncde\n"
+	},
+	{
+		"test": "abcde\nace\n"
+	}
+]

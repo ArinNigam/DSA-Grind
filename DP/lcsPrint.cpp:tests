@@ -1,0 +1,28 @@
+[
+	{
+		"test": "abc\nbcd\n"
+	},
+	{
+		"test": "acd\nabcde\n",
+		"uncorrect_answers":
+		[
+			"dca"
+		]
+	},
+	{
+		"test": "abcd\nxyz\n"
+	},
+	{
+		"test": "ababa\ncbbcad\n"
+	},
+	{
+		"test": "tkbvrgdsty\ngrpjgewmkm\n",
+		"uncorrect_answers":
+		[
+			"$$"
+		]
+	},
+	{
+		"test": "ababa\ncbbcad\n"
+	}
+]
