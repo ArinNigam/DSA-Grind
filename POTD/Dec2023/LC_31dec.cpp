@@ -1,3 +1,13 @@
+// Largest Substring Between Two Equal Characters
+
+// Input: s = "aa"
+// Output: 0
+// Explanation: The optimal substring here is an empty substring between the two 'a's.
+
+// Input: s = "abca"
+// Output: 2
+// Explanation: The optimal substring here is "bc".
+
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -25,7 +35,7 @@ signed main()
     string s;
     cin>>s;
     Solution ob;
-    auto ans = ob.maxLengthBetweenEqualCharacters(nums);
+    auto ans = ob.maxLengthBetweenEqualCharacters(s);
     cout<<ans;
     return 0;
 }

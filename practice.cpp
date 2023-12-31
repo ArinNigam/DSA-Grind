@@ -25,7 +25,7 @@ signed main()
     string s;
     cin>>s;
     Solution ob;
-    auto ans = ob.maxLengthBetweenEqualCharacters(nums);
+    auto ans = ob.maxLengthBetweenEqualCharacters(s);
     cout<<ans;
     return 0;
 }
