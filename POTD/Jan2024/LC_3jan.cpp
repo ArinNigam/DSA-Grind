@@ -9,6 +9,12 @@
 
 // Return the total number of laser beams in the bank.
 
+// Input: bank = ["011001","000000","010100","001000"]
+// Output: 8
+
+// Input: bank = ["000","111","000"]
+// Output: 0
+
 #include<bits/stdc++.h>
 using namespace std;
 
