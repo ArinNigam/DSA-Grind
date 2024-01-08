@@ -74,7 +74,6 @@ public:
         if (root==NULL){
             return 0;
         }
-        
         if( low<= root->val && high>= root->val){
             return root->val + rangeSumBST(root->left,low,high) + rangeSumBST(root->right,low,high);
         }
