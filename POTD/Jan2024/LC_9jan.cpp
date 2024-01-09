@@ -1,3 +1,6 @@
+// Leaf-Similar Trees (Easy)
+// Return true if the leaves of tree1 == tree2
+
 #include<bits/stdc++.h>
 using namespace std;
 //------------------------------------------------------------
