@@ -1,3 +1,13 @@
+// Minimum Number of Steps to Make Two Strings Anagram (Medium)
+// You are given two strings of the same length s and t. In one step you can choose any character of t and replace it with another character.
+
+// Return the minimum number of steps to make t an anagram of s.
+
+
+// Input: s = "bab", t = "aba"
+// Output: 1
+// Explanation: Replace the first 'a' in t with b, t = "bba" which is anagram of s.
+
 #include<bits/stdc++.h>
 using namespace std;
 
