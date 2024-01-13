@@ -1,4 +1,4 @@
-// Minimum Number of Steps to Make Two Strings Anagram (Medium)
+// Minimum Number of Steps to Make Two Strings Anagram ( Medium )
 // You are given two strings of the same length s and t. In one step you can choose any character of t and replace it with another character.
 
 // Return the minimum number of steps to make t an anagram of s.
