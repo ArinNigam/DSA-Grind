@@ -3,23 +3,11 @@ using namespace std;
 
 class Solution {
 public:
-    int maxFrequencyElements(vector<int>& nums) {
-        map<int,int>mp;
-        int maxi = 0;
-        for (int i=0;i<nums.size();i++){
-            mp[nums[i]]++;
-            maxi = max(maxi,mp[nums[i]]);
-        }
-       
-        int cnt = 0;
-        for (auto it:mp){
-            if (it.second==maxi){
-                cnt+=it.second;
-            }
-        }
-        return cnt;
+    int solve(vector<int>& nums){
+        
     }
 };
+
 signed main()
 {    
     int n;
@@ -29,7 +17,7 @@ signed main()
         cin>>nums[i];
     }
     Solution ob;
-    auto ans = ob.maxFrequencyElements(nums);
+    auto ans = ob.solve(nums);
     cout<<ans;
     return 0;
 }
