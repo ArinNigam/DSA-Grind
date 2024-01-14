@@ -1,8 +1,24 @@
 [
 	{
-		"test": "leetcode\npractice\n"
+		"test": "isawsquirrelnearmysquirrelhouseohmy\nmy\nsquirrel\n15\n"
 	},
 	{
-		"test": "bab\naba\n"
+		"test": "abcd\na\na\n4\n"
+	},
+	{
+		"test": "bc\nspzk\nwsick\n1\n"
+	},
+	{
+		"test": "ithhi\nt\nhhi\n1\n\n",
+		"uncorrect_answers":
+		[
+			"1"
+		]
+	},
+	{
+		"test": "a\na\na\n1\n"
+	},
+	{
+		"test": "lrtsi\nlrts\ni\n3\n\n"
 	}
 ]
