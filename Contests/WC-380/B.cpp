@@ -10,6 +10,10 @@
     // s[j..(j + b.length - 1)] == b
     // |j - i| <= k
 
+// 1 <= k <= s.length <= 105
+// 1 <= a.length, b.length <= 10
+// s, a, and b contain only lowercase English letters.
+
 #include<bits/stdc++.h>
 using namespace std;
 
