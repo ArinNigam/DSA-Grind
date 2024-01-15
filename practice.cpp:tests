@@ -1,17 +1,5 @@
 [
 	{
-		"test": "abc bca\n"
-	},
-	{
-		"test": "a\naa\n"
-	},
-	{
-		"test": "cabbba\nabbccc\n"
-	},
-	{
-		"test": "cabbba\naabbss\n\n"
-	},
-	{
-		"test": "uau\nssx\n"
+		"test": "10\n1 3\n2 3\n3 6\n5 6\n5 7\n4 5\n4 8\n4 9\n10 4\n10 9\n"
 	}
 ]
