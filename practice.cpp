@@ -1,43 +1,76 @@
-// Unique Number of Occurrences
-// Given an array of integers arr, return true if the number of occurrences of each value in the array is unique or false otherwise.
-
-// Input: arr = [1,2,2,1,1,3]
-// Output: true
-// Explanation: The value 1 has 3 occurrences, 2 has 2 and 3 has 1. No two values have the same number of occurrences.
-
 #include<bits/stdc++.h>
 using namespace std;
 
-class Solution {
-public:
-    bool uniqueOccurrences(vector<int>& arr) {
-        map<int,int>mp;
-        for (int i=0;i<arr.size();i++){
-            mp[arr[i]]++;
+#define ll long long
+
+#define repi(a,b) for (int i=a;i<b;i++)
+#define repj(a,b) for (int j=a;j<b;j++)
+#define repn(a,b) for (int i=a;i>=b;i--)
+
+#define all(v) v.begin(),v.end()
+#define vi vector<int>
+#define vvi vector<vector<int>>
+#define vl vector<ll>
+#define pii pair<int,int>
+#define vpii vector<pair<int,int>>
+#define mii map<int,int>
+#define ff first
+#define ss second
+
+const int N=1e5+5;
+
+
+void solve()
+{
+    ll a,b;
+    cin>>a>>b;
+    ll diff = abs(a-b);
+    ll low = 0;
+    ll high = sqrt(diff);
+    high*=2;
+    ll mid = 0;
+    ll sum = 0;
+    while(high!=low){
+        mid = (high+low)/2;
+        sum = mid*(mid+1)/2;
+        if (sum>=diff){
+            high = mid;
         }
-        unordered_set<int>st;
-        for (auto it:mp){
-            if (st.find(it.second)==st.end()){
-                st.insert(it.second);
-            }
-            else{
-                return false;
-            }
+        else{
+            low = mid+1;
         }
-        return true;
     }
-};
+    cout<<sum;
+    if (diff%2==0){
+        if (low%4==1){
+            low+=2;
+        }
+        else if (low%4==2){
+            low++;
+        }
+    }
+    
+    if (diff%2==1){
+        if (low%4==3){
+            low+=2;
+        }
+        else if (low%4==0){
+            low++;
+        }
+    }
+    cout<<low;
+    
+}
 
 signed main()
 {    
-    int n;
-    cin>>n;
-    vector<int>nums(n);
-    for (int i=0;i<n;i++){
-        cin>>nums[i];
+    ios::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
+    int t;
+    cin>>t;
+    while(t--){
+        solve();
+        cout<<endl;
     }
-    Solution ob;
-    auto ans = ob.uniqueOccurrences(nums);
-    cout<<ans;
-    return 0;
+    return 0;    
 }
