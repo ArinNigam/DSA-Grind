@@ -1,59 +1,113 @@
-#include<bits/stdc++.h>
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <utility>
+#include <map>
+#include <set>
+#include <math.h>
+#define ll long long
+#define pb push_back
+#define fr(a, b) for (int i = a; i < b; i++)
+#define rep(i, a, b) for (int i = a; i < b; i++)
+#define mod 1000000007
+#define inf (1LL << 60)
+#define all(x) (x).begin(), (x).end()
+#define prDouble(x) cout << fixed << setprecision(10) << x
+#define triplet pair<ll, pair<ll, ll>>
+#define goog(tno) cout << "Case #" << tno << ": "
+#define fast_io                       \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(NULL)
+#define read(x) \
+    int x;      \
+    cin >> x
 using namespace std;
 
-#define ll long long
-
-#define repi(a,b) for (int i=a;i<b;i++)
-#define repj(a,b) for (int j=a;j<b;j++)
-#define repn(a,b) for (int i=a;i>=b;i--)
-
-#define all(v) v.begin(),v.end()
-#define vi vector<int>
-#define vvi vector<vector<int>>
-#define vl vector<ll>
-#define pii pair<int,int>
-#define vpii vector<pair<int,int>>
-#define mii map<int,int>
-#define ff first
-#define ss second
-
-const int N=1e5+5;
-
-
-void solve()
+void init_code()
 {
-    int n;
-    cin>>n;
-    vi v(n);
-    ll sum = 0;
-    set<ll>st={0};
-    bool flag = 0;
-    repi(0,n){
-        cin>>v[i];
-        if (i%2){
-            sum+=v[i]*-1;
-        }
-        else{
-            sum+=v[i];
-        }
-        
-        if (st.count(sum)){
-            flag = 1;
-        }
-        st.insert(sum);
-    }
-    cout<<((flag==1) ? "YES" : "NO");
+    fast_io;
+#ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+#endif
 }
 
-signed main()
-{    
-    ios::sync_with_stdio(0);
-    cin.tie(0); cout.tie(0);
+int main()
+{
+    init_code();
+
     int t;
-    cin>>t;
-    while(t--){
-        solve();
-        cout<<endl;
+    cin >> t;
+
+    while (t--)
+    {
+        int n;
+        cin >> n;
+
+        vector<int> v;
+        vector<int> p;
+        vector<int> sideLane;
+        vector<int> rem;
+
+        for (int i = 0; i < n; i++)
+        {
+            int x;
+            cin >> x;
+            v.push_back(x);
+        }
+
+        p = v;
+
+        sort(p.begin(), p.end());
+
+        int i = 0;
+        int j = 0;
+        int k = -1;
+
+        while (i < v.size() && j < v.size())
+        {
+            if (v[i] != p[j])
+            {
+                if (k != -1)
+                {
+                    while (sideLane[k] < v[i])
+                    {
+                        rem.push_back(sideLane[k]);
+                        sideLane.pop_back();
+                        k--;
+                    }
+                    sideLane.push_back(v[i]);
+                    i++;
+                    k++;
+                }
+                else
+                {
+                    sideLane.push_back(v[i]);
+                    i++;
+                    k++;
+                }
+            }
+            else
+            {
+                rem.push_back(v[i]);
+                i++;
+                j++;
+            }
+        }
+
+        for (int i = sideLane.size() - 1; i >= 0; i--)
+        {
+            rem.push_back(sideLane[i]);
+        }
+
+        if (rem == p)
+        {
+            cout << "YES" << endl;
+        }
+        else
+        {
+            cout << "NO" << endl;
+        }
     }
-    return 0;    
+    return 0;
 }
