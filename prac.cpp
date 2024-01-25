@@ -1,40 +1,43 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
 using namespace std;
 
-int dfs(vector<pair<int,int>>&g, vector<int>& vis, int node, int cost, int target)
-{
-    if(node==target) return cost;
-    int ans=0;
-    for(auto it: g[node])
-    {
-        int child=it.first;
-        int wt=it.second;
-        if(vis[child])continue;
-        vis[child]=1;
-        ans=max(ans,dfs(g, vis, child, min(cost,wt), target));
-        vis[child]=0;
+void solve(){
+    int n,d;
+    cin>>n>>d;
+    vector<int>v(n);
+    for (int i=0;i<n;i++){
+        cin>>v[i];
     }
-    return min(ans, cost);
-}
-
-void solve()
-{
-    int n,m;
-    cin>>n>>m;
-    int a,b;
-    cin>>a>>b;
-    vector<vector<pair<int,int>>>g(n+1);
-    vector<int>vis(n+1,0);
-    for (int i = 0; i <m; i++)
-    {
-        int x,y,wt;
-        cin>>x>>y>>wt;
-        g[x].push_back({y,wt});
+    sort(v.begin(),v.end());
+    int i=0;
+    int k=1;
+    while(k<n){
+        i =0;
+        priority_queue<int,vector<int>,greater<int>>pq;
+        while(i+k<n){
+            pq.push(abs(v[i+k]-v[i]));
+            i++;
+        }
+        if (pq.top()>=d){
+            cout<<k+1;
+            return;
+        }
+        k++;
     }
-    cout<<dfs(g, vis, a, INT_MAX, b)<<endl;
+   
+    
 }
-signed main()
-{    
-    solve();
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */  
+    int t;
+    cin>>t;
+    while(t--){
+        solve();
+        cout<<endl;
+    }
     return 0;
 }
