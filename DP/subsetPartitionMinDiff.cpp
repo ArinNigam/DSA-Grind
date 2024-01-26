@@ -32,7 +32,7 @@ public:
     }
 };
 
-signed main(
+signed main()
 {    
     int n;
     cin>>n;

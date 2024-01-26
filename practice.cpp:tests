@@ -1,5 +1,8 @@
 [
 	{
-		"test": "abcde\nace\n"
+		"test": "2 2 2 0 0 \n"
+	},
+	{
+		"test": "1 3 3 0 1\n"
 	}
 ]
