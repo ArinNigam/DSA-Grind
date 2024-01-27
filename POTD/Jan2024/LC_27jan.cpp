@@ -1,3 +1,14 @@
+// K Inverse Pairs Array
+// For an integer array nums, an inverse pair is a pair of integers [i, j] where 0 <= i < j < nums.length and nums[i] > nums[j].
+// Input: n = 3, k = 0
+// Output: 1
+// Explanation: Only the array [1,2,3] which consists of numbers from 1 to 3 has exactly 0 inverse pairs.
+
+// HINT- Think of a recurenece relation 
+// f(n,k) = f(n-1,k) + f(n-1,k-1) + ...... f(n-1,k-n+1)
+// f(n,k-1) = f(n-1,k-1) + f(n-1,k-2) + ..... f(n-1,k-n+1)
+// f(n,k) = f(n-1,k)+ f(n,k-1) - f(n-1,k-n)
+
 #include<bits/stdc++.h>
 using namespace std;
 

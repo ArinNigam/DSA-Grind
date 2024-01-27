@@ -1,58 +1,52 @@
-#include <cmath>
-#include <cstdio>
-#include <vector>
-#include <iostream>
-#include <algorithm>
 #include<bits/stdc++.h>
 using namespace std;
-int dp[101][20001];
-int func1(int i,int sum,int v[])
-{
-    if(i<0)
-    {
-      if(sum==0) return 0;
-        else return 1e8;
+
+void merge(vector<int>&nums,int low,int high,int mid){
+    int left = low;
+    int right = mid+1;
+    vector<int>temp;
+    while(left<=mid && right<=high){
+        if (nums[left] > nums[right]){
+            temp.push_back(nums[right]);
+            right++;
+        }
+        else{
+            temp.push_back(nums[left]);
+            left++;
+        }
     }
-    if(sum==0) return 0;
-    // cout<<"hey";
-    if(dp[i][sum]!=-1) return dp[i][sum];
-    int minn=1e8;
-    minn=min(func1(i-1,sum-v[i],v)+1,func1(i-1,sum,v));
-    return dp[i][sum]=minn;
-}
-int func(int i,int sum,int v[])
-{
-    if(i<0)
-    {
-        if(sum<0) return 1e8;
-        if(sum>=0) return sum;
+    while(left<=mid){
+        temp.push_back(nums[left]);
+        left++;
     }
-    if(dp[i][sum]!=-1) return dp[i][sum];
-    int minn=1e8;
-    minn=min(minn,func(i-1,sum,v));
-    if(sum>=v[i])
-    minn=min(minn,func(i-1,sum-v[i],v));
-    return dp[i][sum]=minn;
+    while(right<=high){
+        temp.push_back(nums[right]);
+        right++;
+    }
+    for (int i=low;i<=high;i++){
+        nums[i] = temp[i-low];
+    }
 }
-int main() {
-    /* Enter your code here. Read input from STDIN. Print output to STDOUT */ 
-    int t;
-    cin>>t;
-    while(t>0)
-    {
-        t--;
-        memset(dp,-1,sizeof(dp));
-        int n;
-        cin>>n;
-        int v[n];
-        int sum=0;
-        for(int i=0;i<n;i++)
-        {cin>>v[i];
-        sum=sum+v[i];}
-        int k= func(n-1,sum/2,v);
-        // cout<<k<<"\n"<<"hi"<<"\n";
-        memset(dp,-1,sizeof(dp));
-        cout<< func1(n-1,sum/2-k,v)<<"\n";
+void mergeSort(vector<int>&nums,int low,int high){
+    if (low>=high) return;
+    int mid = (low+high)/2;
+    mergeSort(nums,low,mid);
+    mergeSort(nums,mid+1,high);
+    merge(nums,low,high,mid);
+}
+
+signed main()
+{    
+    int n;
+    cin>>n;
+    vector<int>nums(n);
+    for (int i=0;i<n;i++){
+        cin>>nums[i];
+    }
+   
+    mergeSort(nums,0,n-1);
+    for (auto it:nums){
+        cout<<it<<" ";
     }
     return 0;
 }
