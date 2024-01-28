@@ -5,6 +5,7 @@
 // Input: m = 2, n = 2, maxMove = 2, startRow = 0, startColumn = 0
 // Output: 6
 
+// HINT- dp with 4 adjacent points sum of all possible paths 
 #include<bits/stdc++.h>
 using namespace std;
 
