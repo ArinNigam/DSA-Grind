@@ -1,3 +1,11 @@
+//Partition Array for Maximum Sum (Medium)
+
+// Given an integer array arr, partition the array into (contiguous) subarrays of length at most k. After partitioning, each subarray has their values changed to become the maximum value of that subarray.
+
+// Input: arr = [1,15,7,9,2,5,10], k = 3
+// Output: 84
+// Explanation: arr becomes [15,15,15,9,10,10,10]
+
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -16,7 +24,7 @@ public:
             mx = max(mx,nums[i]);
             ans = max(ans,(i-ind+1)*mx + solve(i+1,k,nums,dp));
         }
-        return ans;
+        return dp[ind] = ans;
     }
     int maxSumAfterPartitioning(vector<int>& arr, int k) {
         vector<int>dp(arr.size()+1,-1);
