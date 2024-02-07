@@ -20,32 +20,109 @@ using namespace std;
 const int N=1e5+5;
 
 
-void solve()
-{
-    ll a,b,r;
-    cin>>a>>b>>r;
-    if (b>a){
-        swap(a,b);
+class SegmentTree {
+private:
+    struct Node {
+        int minValue;
+        int maxValue;
+        int minIndex;
+        int maxIndex;
+    };
+
+    vector<Node> tree;
+    vector<int> nums;
+
+    Node merge(const Node& left, const Node& right) {
+        Node result;
+        result.minValue = min(left.minValue, right.minValue);
+        result.maxValue = max(left.maxValue, right.maxValue);
+
+        if (left.minValue != right.minValue) {
+            result.minIndex = (left.minValue < right.minValue) ? left.minIndex : right.minIndex;
+        } else {
+            result.minIndex = min(left.minIndex, right.minIndex);
+        }
+
+        if (left.maxValue != right.maxValue) {
+            result.maxIndex = (left.maxValue > right.maxValue) ? left.maxIndex : right.maxIndex;
+        } else {
+            result.maxIndex = max(left.maxIndex, right.maxIndex);
+        }
+
+        return result;
     }
-    ll mini = abs(a-b);
-    ll ans = mini;
-    // cout<<(1LL<<63)-1<<" ";
-    ll k =0;
-    repn(63,0){
-        cout<<((b>>i)&1);
-        if (((b>>i)&1) ==0 && ((a>>i)&1)==1){
-            if (k+(1LL<<i)<=r){
-                if (mini>=1LL<<(i+1)){
-                    k+=(1LL<<i);
-                    mini -= (1LL<<(i+1));
-                }
-               
-            }
-         
+
+    void buildTree(int node, int start, int end) {
+        if (start == end) {
+            tree[node].minValue = nums[start];
+            tree[node].maxValue = nums[start];
+            tree[node].minIndex = start;
+            tree[node].maxIndex = start;
+        } else {
+            int mid = (start + end) / 2;
+            buildTree(2 * node + 1, start, mid);
+            buildTree(2 * node + 2, mid + 1, end);
+            tree[node] = merge(tree[2 * node + 1], tree[2 * node + 2]);
         }
     }
-    cout<<min(mini,ans);
-    
+
+    Node query(int node, int start, int end, int left, int right) {
+        if (start > right || end < left) {
+            return {INT_MAX, INT_MIN, -1, -1};
+        }
+        if (start >= left && end <= right) {
+            return tree[node];
+        }
+        int mid = (start + end) / 2;
+        return merge(query(2 * node + 1, start, mid, left, right),
+                     query(2 * node + 2, mid + 1, end, left, right));
+    }
+
+public:
+    SegmentTree(const vector<int>& input) {
+        nums = input;
+        int n = input.size();
+        tree.resize(4 * n);
+        buildTree(0, 0, n - 1);
+    }
+
+    pair<int, int> findDistinctIndexes(int left, int right) {
+        Node result = query(0, 0, nums.size() - 1, left, right);
+
+        if (result.minIndex != result.maxIndex && nums[result.minIndex] != nums[result.maxIndex]) {
+            return {result.minIndex, result.maxIndex};
+        } else {
+            return {-1, -1};
+        }
+    }
+};
+
+
+void solve()
+{
+    int n;
+    cin>>n;
+    vi v(n);
+    repi(0,n){
+        cin>>v[i];
+        
+    }
+   
+    SegmentTree st(v);
+    int q;
+    cin>>q;
+    while(q--){
+        int l,r;
+        cin>>l>>r;
+        pair<int, int> ans = st.findDistinctIndexes(l-1, r-1);
+        if (ans.ff != -1) {
+            cout << ans.ff+1 << " " << ans.ss+1 << endl;
+        } else {
+            cout << -1 <<" "<<-1<< endl;
+        }
+    }
+
+   
 }
 
 signed main()

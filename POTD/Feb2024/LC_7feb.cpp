@@ -1,3 +1,9 @@
+// Sort Characters By Frequency ( Medium )
+
+//Given a string s sort it in decreasing order based on the frequency of the characters.
+// Input: s = "tree"
+// Output: "eert" 
+
 #include<bits/stdc++.h>
 using namespace std;
 
