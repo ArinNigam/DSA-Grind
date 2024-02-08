@@ -1,8 +1,5 @@
 [
 	{
-		"test": "tree\n"
-	},
-	{
-		"test": "Aabb\n"
+		"test": "3\n1\n1 1\n2\n1 2 2 1\n3\n1 1 2 2 3 3\n"
 	}
 ]
