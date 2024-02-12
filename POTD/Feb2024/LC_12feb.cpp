@@ -1,3 +1,10 @@
+// Majority Element (Easy)
+
+// Given an array nums of size n, return the majority element.
+
+// Input: nums = [2,2,1,1,1,2,2]
+// Output: 2
+
 #include<bits/stdc++.h>
 using namespace std;
 
