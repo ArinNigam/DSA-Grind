@@ -1,4 +1,9 @@
 // Path with Maximum Gold (Medium)
+// Topic: DFS
+// Expected Time Complexity: O(m*n)
+// Expected Space Complexity: O(m*n)
+// Problem Statement: https://leetcode.com/problems/path-with-maximum-gold/
+
 // In a gold mine grid of size m x n, each cell in this mine has an integer representing the amount of gold in that cell, 0 if it is empty.
 
 // Return the maximum amount of gold you can collect under the conditions:
@@ -17,43 +22,51 @@
 //  [0,9,0]]
 // Path to get the maximum gold, 9 -> 8 -> 7.
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
+class Solution
+{
 public:
-    int dfs(int i,int j,vector<vector<int>>&grid){
+    int dfs(int i, int j, vector<vector<int>> &grid)
+    {
         int m = grid.size();
         int n = grid[0].size();
-       
-        if (i<0 || i>=m || j<0 || j>=n) return 0;
-        if (grid[i][j]==0) return 0;
-        
+
+        if (i < 0 || i >= m || j < 0 || j >= n)
+            return 0;
+        if (grid[i][j] == 0)
+            return 0;
+
         int gold = grid[i][j];
         grid[i][j] = 0;
-        int dx[] = {-1,0,1,0};
-        int dy[] = {0,-1,0,1};
+        int dx[] = {-1, 0, 1, 0};
+        int dy[] = {0, -1, 0, 1};
         int maxi = gold;
-        
-        for (int k=0;k<4;k++){
+
+        for (int k = 0; k < 4; k++)
+        {
             int nx = dx[k] + i;
             int ny = dy[k] + j;
-            maxi = max(maxi,gold + dfs(nx,ny,grid));
+            maxi = max(maxi, gold + dfs(nx, ny, grid));
         }
-        
+
         grid[i][j] = gold;
         return maxi;
-        
     }
-    int getMaximumGold(vector<vector<int>>& grid) {
+    int getMaximumGold(vector<vector<int>> &grid)
+    {
         int m = grid.size();
         int n = grid[0].size();
-        
+
         int maxi = 0;
-        for (int i=0;i<m;i++){
-            for (int j=0;j<n;j++){
-                if (grid[i][j]!=0){
-                    maxi = max(maxi,dfs(i,j,grid));
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (grid[i][j] != 0)
+                {
+                    maxi = max(maxi, dfs(i, j, grid));
                 }
             }
         }
@@ -61,17 +74,19 @@ public:
     }
 };
 signed main()
-{    
-    int m,n;
-    cin>>m>>n;
-    vector<vector<int>>nums(m,vector<int>(n));
-    for (int i=0;i<n;i++){
-        for (int j=0;j<n;j++){
-            cin>>nums[i][j];
+{
+    int m, n;
+    cin >> m >> n;
+    vector<vector<int>> nums(m, vector<int>(n));
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            cin >> nums[i][j];
         }
     }
     Solution ob;
     auto ans = ob.getMaximumGold(nums);
-    cout<<ans;
+    cout << ans;
     return 0;
 }

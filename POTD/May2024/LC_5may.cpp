@@ -1,61 +1,89 @@
-// Boats to Save People (Medium)
+// Delete Node in a Linked List (Medium)
+// Topic: Linked List
+// Expected Time Complexity: O(1)
+// Expected Space Complexity: O(1)
+// Problem Statement: https://leetcode.com/problems/delete-node-in-a-linked-list/
 
-// You are given an array people where people[i] is the weight of the 
-// ith person, and an infinite number of boats where each boat can carry
-//  a maximum weight of limit. Each boat carries at most two people at 
-//  the same time, provided the sum of the weight of those people is at
-//   most limit.
+// There is a singly-linked list head and we want to delete a node node in it.
+// You are given the node to be deleted node. You will not be given access to the first node of head.
+// All the values of the linked list are unique, and it is guaranteed that the given node node is not the last node in the linked list.
+// Delete the given node. Note that by deleting the node, we do not mean removing it from memory. We mean:
 
-// Return the minimum number of boats to carry every given person.
+// The value of the given node should not exist in the linked list.
+// The number of nodes in the linked list should decrease by one.
+// All the values before node should be in the same order.
+// All the values after node should be in the same order.
+// Custom testing:
 
-// Example 1:
+// For the input, you should provide the entire linked list head and the node to be given node. node should not be the last node of the list and should be an actual node in the list.
+// We will build the linked list and pass the node to your function.
+// The output will be the entire list after calling your function.
 
-// Input: people = [1,2], limit = 3
-// Output: 1
-// Explanation: 1 boat (1, 2)
+// Input: head = [4,5,1,9], node = 5
+// Output: [4,1,9]
+// Explanation: You are given the second node with value 5, the linked list should become 4 -> 1 -> 9 after calling your function.
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
+//------------------------------------------------------------
+
+struct ListNode
+{
+    int val;
+    struct ListNode *next;
+    ListNode(int x)
+    {
+        val = x;
+        next = NULL;
+    }
+};
+
+struct ListNode *buildList(int size)
+{
+    int val;
+    cin >> val;
+
+    ListNode *head = new ListNode(val);
+    ListNode *tail = head;
+
+    for (int i = 0; i < size - 1; i++)
+    {
+        cin >> val;
+        tail->next = new ListNode(val);
+        tail = tail->next;
+    }
+    return head;
+}
+
+void printList(ListNode *n)
+{
+    while (n)
+    {
+        cout << n->val << " ";
+        n = n->next;
+    }
+    cout << endl;
+}
+
+//------------------------------------------------------------
+
+class Solution
+{
 public:
-    int numRescueBoats(vector<int>& people, int limit) {
-        int n = people.size();
-        sort(people.begin(),people.end());
-        
-        int l = 0;
-        int r = n-1;
-        
-        int cnt = 0;
-        while(l<=r){
-            int sum = people[l] + people[r];
-            
-            if (sum<=limit){
-                l++;
-                r--;
-                cnt++;
-            }
-            else{
-                cnt++;
-                r--;
-            }
-        }
-        return cnt;
+    void deleteNode(ListNode *node)
+    {
+        node->val = node->next->val;
+        node->next = node->next->next;
     }
 };
 
 signed main()
-{    
+{
     int n;
-    cin>>n;
-    vector<int>nums(n);
-    for (int i=0;i<n;i++){
-        cin>>nums[i];
-    }
-    int limit;
-    cin>>limit;
+    cin >> n;
+    ListNode *nums = buildList(n);
     Solution ob;
-    auto ans = ob.numRescueBoats(nums,limit);
-    cout<<ans;
+    ob.deleteNode(nums);
     return 0;
 }

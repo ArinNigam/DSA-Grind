@@ -1,4 +1,8 @@
 // Reverse Prefix of Word (Easy)
+// Topic: String & Stack
+// Expected Time Complexity: O(n)
+// Expected Space Complexity: O(n)
+// Problem Statement: https://leetcode.com/problems/reverse-prefix-of-word/
 
 // Given a 0-indexed string word and a character ch, reverse the segment of word that starts at index 0 and ends at the index of the first occurrence of ch (inclusive). If the character ch does not exist in word, do nothing.
 
@@ -7,52 +11,60 @@
 
 // Input: word = "abcdefd", ch = "d"
 // Output: "dcbaefd"
-// Explanation: The first occurrence of "d" is at index 3. 
+// Explanation: The first occurrence of "d" is at index 3.
 // Reverse the part of word from 0 to 3 (inclusive), the resulting string is "dcbaefd".
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
+class Solution
+{
 public:
-    string reversePrefix(string word, char ch) {
+    string reversePrefix(string word, char ch)
+    {
         int n = word.size();
-        stack<char>st;
+        stack<char> st;
         int i;
-        for (i=0;i<n;i++){
-            if (word[i]!=ch){
+        for (i = 0; i < n; i++)
+        {
+            if (word[i] != ch)
+            {
                 st.push(word[i]);
             }
-            else{
+            else
+            {
                 st.push(word[i]);
                 break;
-            }    
+            }
         }
-        
+
         string ans;
-        if (word.size()==st.size() && st.top()!=ch){
+        if (word.size() == st.size() && st.top() != ch)
+        {
             return word;
         }
-        while(!st.empty()){
-            ans+=st.top();
+        while (!st.empty())
+        {
+            ans += st.top();
             st.pop();
         }
         i++;
-        for (i;i<n;i++){
-            ans+=word[i];
+        for (i; i < n; i++)
+        {
+            ans += word[i];
         }
         return ans;
     }
 };
 
 signed main()
-{    
+{
     string word;
-    cin>>word;
+    cin >> word;
     char ch;
-    cin>>ch;
+    cin >> ch;
     Solution ob;
-    auto ans = ob.reversePrefix(word,ch);
-    cout<<ans;
+    auto ans = ob.reversePrefix(word, ch);
+    cout << ans;
     return 0;
 }

@@ -1,4 +1,9 @@
 // Get Equal Substrings Within Budget (Medium)
+// Topic: Sliding Window
+// Expected Time Complexity: O(n)
+// Expected Space Complexity: O(1)
+// Problem Statement: https://leetcode.com/problems/get-equal-substrings-within-budget/
+
 // You are given two strings s and t of the same length and an integer maxCost.
 // You are given two strings s and t of the same length and an integer maxCost.
 
@@ -13,40 +18,45 @@
 // Explanation: "abc" of s can change to "bcd".
 // That costs 3, so the maximum length is 3.
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
+class Solution
+{
 public:
-    int equalSubstring(string s, string t, int maxCost) {
+    int equalSubstring(string s, string t, int maxCost)
+    {
         int n = s.size();
-        int i=0,j=0;
+        int i = 0, j = 0;
         int cst = maxCost;
         int maxi = 0;
-        while(j<n){
-            if (cst - abs(s[j]-t[j])< 0){
-                maxi = max(maxi,j-i);
-                cst += abs(s[i]-t[i]);
+        while (j < n)
+        {
+            if (cst - abs(s[j] - t[j]) < 0)
+            {
+                maxi = max(maxi, j - i);
+                cst += abs(s[i] - t[i]);
                 i++;
             }
-            else{
-                cst -= abs(s[j]-t[j]);
+            else
+            {
+                cst -= abs(s[j] - t[j]);
                 j++;
             }
         }
-        maxi = max(maxi,j-i);
+        maxi = max(maxi, j - i);
         return maxi;
     }
 };
 
 signed main()
-{    
-    string s,t;
-    cin>>s>>t;
+{
+    string s, t;
+    cin >> s >> t;
     int maxCost;
-    cin>>maxCost;
+    cin >> maxCost;
     Solution ob;
-    auto ans = ob.equalSubstring(s,t,maxCost);
-    cout<<ans;
+    auto ans = ob.equalSubstring(s, t, maxCost);
+    cout << ans;
     return 0;
 }

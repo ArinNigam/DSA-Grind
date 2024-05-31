@@ -1,4 +1,8 @@
-//Remove Nodes From Linked List(Medium)
+// Remove Nodes From Linked List(Medium)
+// Topic: Linked List
+// Expected Time Complexity: O(n)
+// Expected Space Complexity: O(1)
+// Problem Statement: https://leetcode.com/problems/remove-nodes-from-linked-list/
 
 // You are given the head of a linked list.
 // Remove every node which has a node with a greater value anywhere to the right side of it.
@@ -10,71 +14,83 @@
 // - Node 13 is to the right of node 5.
 // - Node 13 is to the right of node 2.
 // - Node 8 is to the right of node 3.
-#include<bits/stdc++.h>
+
+#include <bits/stdc++.h>
 using namespace std;
 
 //------------------------------------------------------------
 
-struct ListNode {
+struct ListNode
+{
     int val;
-    struct ListNode* next;
-    ListNode(int x) {
+    struct ListNode *next;
+    ListNode(int x)
+    {
         val = x;
         next = NULL;
     }
 };
 
-struct ListNode* buildList(int size){
+struct ListNode *buildList(int size)
+{
     int val;
-    cin>>val;
-    
-    ListNode* head = new ListNode(val);
-    ListNode* tail = head;
-    
-    for (int i=0;i<size-1;i++){
-        cin>>val;
+    cin >> val;
+
+    ListNode *head = new ListNode(val);
+    ListNode *tail = head;
+
+    for (int i = 0; i < size - 1; i++)
+    {
+        cin >> val;
         tail->next = new ListNode(val);
         tail = tail->next;
     }
     return head;
 }
 
-void printList(ListNode *n){
-    while(n){
-        cout<<n->val<<" ";
+void printList(ListNode *n)
+{
+    while (n)
+    {
+        cout << n->val << " ";
         n = n->next;
     }
-    cout<<endl;
+    cout << endl;
 }
 
 //------------------------------------------------------------
 
-class Solution {
+class Solution
+{
 public:
-    ListNode* removeNodes(ListNode* head) {
-        if (head==NULL){
+    ListNode *removeNodes(ListNode *head)
+    {
+        if (head == NULL)
+        {
             return NULL;
         }
-        
-        ListNode* node = head;
-        ListNode* next = removeNodes(node->next);
-        
+
+        ListNode *node = head;
+        ListNode *next = removeNodes(node->next);
+
         node->next = next;
-        
-        if (next==NULL || node->val >= next->val){
+
+        if (next == NULL || node->val >= next->val)
+        {
             return node;
         }
-        
+
         return next;
     }
 };
 
-signed main(){  
+signed main()
+{
     int n;
-    cin>>n;
-    ListNode* nums = buildList(n);
+    cin >> n;
+    ListNode *nums = buildList(n);
     Solution ob;
-    ListNode* res = ob.removeNodes(nums);
-    printList(res);   
+    ListNode *res = ob.removeNodes(nums);
+    printList(res);
     return 0;
 }

@@ -1,4 +1,8 @@
 // Relative Ranks (Easy)
+// Topic: Sorting
+// Expected Time Complexity: O(nlogn)
+// Expected Space Complexity: O(n)
+// problem Statement: https://leetcode.com/problems/relative-ranks/
 
 // The 1st place athlete's rank is "Gold Medal".
 // The 2nd place athlete's rank is "Silver Medal".
@@ -12,35 +16,40 @@
 // Output: ["Gold Medal","Silver Medal","Bronze Medal","4","5"]
 // Explanation: The placements are [1st, 2nd, 3rd, 4th, 5th].
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
+class Solution
+{
 public:
-    vector<string> findRelativeRanks(vector<int>& score) {
-        
+    vector<string> findRelativeRanks(vector<int> &score)
+    {
+
         int n = score.size();
-        vector<pair<int,int>>vp(n);
-        
-        for (int i=0;i<n;i++){
-            vp[i] = make_pair(score[i],i);
+        vector<pair<int, int>> vp(n);
+
+        for (int i = 0; i < n; i++)
+        {
+            vp[i] = make_pair(score[i], i);
         }
-        sort(vp.rbegin(),vp.rend());
+        sort(vp.rbegin(), vp.rend());
         vector<string> ans(n);
-        for (int i=0;i<n;i++){
-            switch(i){
-                case 0:
-                    ans[vp[i].second] = "Gold Medal";
-                    break;
-                case 1:
-                    ans[vp[i].second] = "Silver Medal";
-                    break;
-                
-                case 2:
-                    ans[vp[i].second] = "Bronze Medal";
-                    break;
-                default:
-                    ans[vp[i].second] = to_string(i+1);
+        for (int i = 0; i < n; i++)
+        {
+            switch (i)
+            {
+            case 0:
+                ans[vp[i].second] = "Gold Medal";
+                break;
+            case 1:
+                ans[vp[i].second] = "Silver Medal";
+                break;
+
+            case 2:
+                ans[vp[i].second] = "Bronze Medal";
+                break;
+            default:
+                ans[vp[i].second] = to_string(i + 1);
             }
         }
         return ans;
@@ -48,17 +57,19 @@ public:
 };
 
 signed main()
-{    
+{
     int n;
-    cin>>n;
-    vector<int>nums(n);
-    for (int i=0;i<n;i++){
-        cin>>nums[i];
+    cin >> n;
+    vector<int> nums(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> nums[i];
     }
     Solution ob;
     auto ans = ob.findRelativeRanks(nums);
-    for (auto it:ans){
-        cout<<it<<" ";
+    for (auto it : ans)
+    {
+        cout << it << " ";
     }
     return 0;
 }
