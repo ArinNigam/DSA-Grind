@@ -1,4 +1,8 @@
 // Continuous Subarray Sum (Medium)
+// Topic: Arrays
+// Expected Time Complexcity: O(N)
+// Expected Space Complexity: O(N)
+// Problem Statement: https://leetcode.com/problems/continuous-subarray-sum/
 
 // Given an integer array nums and an integer k, return true if nums has a good subarray or false otherwise.
 
@@ -15,48 +19,55 @@
 // Output: true
 // Explanation: [2, 4] is a continuous subarray of size 2 whose elements sum up to 6.
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
+class Solution
+{
 public:
-    bool checkSubarraySum(vector<int>& nums, int k) {
+    bool checkSubarraySum(vector<int> &nums, int k)
+    {
         int n = nums.size();
-        if (n==1) return false;
-        
-        unordered_map<int,int>mp;
+        if (n == 1)
+            return false;
+
+        unordered_map<int, int> mp;
         int prefix = 0;
         mp[0] = -1;
         int sum = 0;
-        for (int i=0;i<n;i++){
-            sum+=nums[i];
-            sum%=k;
-            if (mp.find(sum)!=mp.end()){
-                if (i > mp[sum] + 1){
+        for (int i = 0; i < n; i++)
+        {
+            sum += nums[i];
+            sum %= k;
+            if (mp.find(sum) != mp.end())
+            {
+                if (i > mp[sum] + 1)
+                {
                     return true;
                 }
             }
-            else{
+            else
+            {
                 mp[sum] = i;
             }
-            
         }
         return false;
     }
 };
 
 signed main()
-{    
+{
     int n;
-    cin>>n;
-    vector<int>nums(n);
-    for (int i=0;i<n;i++){
-        cin>>nums[i];
+    cin >> n;
+    vector<int> nums(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> nums[i];
     }
     int k;
-    cin>>k;
+    cin >> k;
     Solution ob;
-    auto ans = ob.checkSubarraySum(nums,k);
-    cout<<ans;
+    auto ans = ob.checkSubarraySum(nums, k);
+    cout << ans;
     return 0;
 }

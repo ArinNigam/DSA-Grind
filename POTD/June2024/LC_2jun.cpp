@@ -1,4 +1,8 @@
 // Reverse String (Easy)
+// Topic: Strings
+// Expected Time Complexcity: O(N)
+// Expected Space Complexity: O(1)
+// Problem Statement: https://leetcode.com/problems/reverse-string/
 
 // Write a function that reverses a string. The input string is given as an array of characters s.
 // You must do this by modifying the input array in-place with O(1) extra memory.
@@ -6,32 +10,37 @@
 // Input: s = ["h","e","l","l","o"]
 // Output: ["o","l","l","e","h"]
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
+class Solution
+{
 public:
-    void reverseString(vector<char>& s) {
+    void reverseString(vector<char> &s)
+    {
         int l = 0;
-        int r = s.size()-1;
-        while(l<=r){
-            swap(s[l++],s[r++]);
+        int r = s.size() - 1;
+        while (l <= r)
+        {
+            swap(s[l++], s[r++]);
         }
     }
 };
 
 signed main()
-{    
+{
     int n;
-    cin>>n;
-    vector<char>nums(n);
-    for (int i=0;i<n;i++){
-        cin>>nums[i];
+    cin >> n;
+    vector<char> nums(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> nums[i];
     }
     Solution ob;
     ob.reverseString(nums);
-    for (auto it:nums){
-        cout<<it<<" ";
+    for (auto it : nums)
+    {
+        cout << it << " ";
     }
     return 0;
 }

@@ -1,4 +1,8 @@
 // IPO (Hard)
+// Topic: Priority Queue
+// Expected Time Complexcity: O(NlogN)
+// Expected Space Complexity: O(N)
+// Problem Statement: https://leetcode.com/problems/ipo/
 
 // Suppose LeetCode will start its IPO soon. In order to sell a good price of its shares to Venture Capital, LeetCode would like to work on some projects to increase its capital before the IPO. Since it has limited resources, it can only finish at most k distinct projects before the IPO. Help LeetCode design the best way to maximize its total capital after finishing at most k distinct projects.
 // You are given n projects where the ith project has a pure profit profits[i] and a minimum capital of capital[i] is needed to start it.
@@ -16,50 +20,63 @@
 // Since you can choose at most 2 projects, you need to finish the project indexed 2 to get the maximum capital.
 // Therefore, output the final maximized capital, which is 0 + 1 + 3 = 4.
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
+class Solution
+{
 public:
-    int findMaximizedCapital(int k, int w, vector<int>& profits, vector<int>& capital) {
+    int findMaximizedCapital(int k, int w, vector<int> &profits, vector<int> &capital)
+    {
         int n = profits.size();
-        vector<pair<int,int>>vp;
+        vector<pair<int, int>> vp;
 
-        for (int i=0;i<n;i++){
-            vp.push_back({capital[i],profits[i]});
+        for (int i = 0; i < n; i++)
+        {
+            vp.push_back({capital[i], profits[i]});
         }
-        sort(vp.begin(),vp.end());
+        sort(vp.begin(), vp.end());
 
-        priority_queue<int>pq; // max_heap
+        priority_queue<int> pq; // max_heap
         int j = 0;
-        for (int i=0;i<k;i++){
-            while(j<n && vp[j].first <= w){
+        for (int i = 0; i < k; i++)
+        {
+            while (j < n && vp[j].first <= w)
+            {
                 pq.push(vp[j].second);
                 j++;
             }
 
-            if (pq.empty()){
+            if (pq.empty())
+            {
                 break;
             }
 
-            w+=pq.top();
+            w += pq.top();
             pq.pop();
         }
         return w;
-
     }
 };
 
 signed main()
-{    
+{
     int n;
-    cin>>n;
-    vector<int>nums(n);
-    for (int i=0;i<n;i++){
-        cin>>nums[i];
+    cin >> n;
+    vector<int> profits(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> profits[i];
     }
+    vector<int> capital(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> capital[i];
+    }
+    int k, w;
+    cin >> k >> w;
     Solution ob;
-    auto ans = ob.solve(nums);
-    cout<<ans;
+    auto ans = ob.findMaximizedCapital(k, w, profits, capital);
+    cout << ans;
     return 0;
 }

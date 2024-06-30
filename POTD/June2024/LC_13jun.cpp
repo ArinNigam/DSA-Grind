@@ -1,4 +1,8 @@
 // Minimum Number of Moves to Seat Everyone (Easy)
+// Topic: Arrays & Greedy
+// Expected Time Complexcity: O(NlogN)
+// Expected Space Complexity: O(1)
+// Problem Statement: https://leetcode.com/problems/minimum-number-of-moves-to-seat-everyone/
 
 // There are n seats and n students in a room. You are given an array seats of length n, where seats[i] is the position of the ith seat. You are also given the array students of length n, where students[j] is the position of the jth student.
 // You may perform the following move any number of times:
@@ -15,36 +19,41 @@
 // - The third student is moved from from position 4 to position 3 using 1 move.
 // In total, 1 + 2 + 1 = 4 moves were used
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
+class Solution
+{
 public:
-    int minMovesToSeat(vector<int>& seats, vector<int>& students) {
+    int minMovesToSeat(vector<int> &seats, vector<int> &students)
+    {
         int n = seats.size();
-        sort(seats.begin(),seats.end());
-        sort(students.begin(),students.end());
+        sort(seats.begin(), seats.end());
+        sort(students.begin(), students.end());
         int cnt = 0;
-        for (int i=0;i<n;i++){
-            cnt+=abs(seats[i]-students[i]);
+        for (int i = 0; i < n; i++)
+        {
+            cnt += abs(seats[i] - students[i]);
         }
         return cnt;
     }
 };
 
 signed main()
-{    
+{
     int n;
-    cin>>n;
-    vector<int>seats(n),students(n);
-    for (int i=0;i<n;i++){
-        cin>>seats[i];
+    cin >> n;
+    vector<int> seats(n), students(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> seats[i];
     }
-    for (int i=0;i<n;i++){
-        cin>>students[i];
+    for (int i = 0; i < n; i++)
+    {
+        cin >> students[i];
     }
     Solution ob;
-    auto ans = ob.minMovesToSeat(seats,students);
-    cout<<ans;
+    auto ans = ob.minMovesToSeat(seats, students);
+    cout << ans;
     return 0;
 }

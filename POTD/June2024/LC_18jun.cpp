@@ -1,4 +1,8 @@
 // Most Profit Assigning Work( Medium )
+// Topic: Arrays
+// Expected Time Complexcity: O(NlogN)
+// Expected Space Complexity: O(N)
+// Problem Statement: https://leetcode.com/problems/most-profit-assigning-work/
 
 // You have n jobs and m workers. You are given three arrays: difficulty, profit, and worker where:
 // difficulty[i] and profit[i] are the difficulty and the profit of the ith job, and

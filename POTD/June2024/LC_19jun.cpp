@@ -1,4 +1,8 @@
 // Minimum Number of Days to Make m Bouquets (Medium)
+// Topic: Binary Search
+// Expected Time Complexcity: O(NlogN)
+// Expected Space Complexity: O(1)
+// Problem Statement: https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/
 
 // You are given an integer array bloomDay, an integer m and an integer k.
 // You want to make m bouquets. To make a bouquet, you need to use k adjacent flowers from the garden.
@@ -14,44 +18,54 @@
 // After day 2: [x, _, _, _, x]   // we can only make two bouquets.
 // After day 3: [x, _, x, _, x]   // we can make 3 bouquets. The answer is 3.
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
+class Solution
+{
 public:
-    bool isPossible(int mid,int k,int m,vector<int>&bloomDay){
+    bool isPossible(int mid, int k, int m, vector<int> &bloomDay)
+    {
         int n = bloomDay.size();
-        int cnt= 0;
+        int cnt = 0;
         int numOfBouquets = 0;
-        for(int i=0;i<n;i++){
-            if (bloomDay[i] <= mid){
+        for (int i = 0; i < n; i++)
+        {
+            if (bloomDay[i] <= mid)
+            {
                 cnt++;
-                
             }
-            else{
+            else
+            {
                 cnt = 0;
             }
-            if ( cnt == k){
+            if (cnt == k)
+            {
                 numOfBouquets++;
                 cnt = 0;
             }
         }
-        return numOfBouquets>=m;
+        return numOfBouquets >= m;
     }
-    int minDays(vector<int>& bloomDay, int m, int k) {
+    int minDays(vector<int> &bloomDay, int m, int k)
+    {
         int n = bloomDay.size();
-        if ((long long)m*k > n){
+        if ((long long)m * k > n)
+        {
             return -1;
         }
         int l = 1;
         int r = 1e9;
-        while(l<r){
-            int mid= l+(r-l)/2;
-            if (isPossible(mid,k,m,bloomDay)){
+        while (l < r)
+        {
+            int mid = l + (r - l) / 2;
+            if (isPossible(mid, k, m, bloomDay))
+            {
                 r = mid;
             }
-            else{
-                l = mid+1;
+            else
+            {
+                l = mid + 1;
             }
         }
         return l;
@@ -59,17 +73,18 @@ public:
 };
 
 signed main()
-{    
+{
     int n;
-    cin>>n;
-    int m,k;
-    cin>>m>>k;
-    vector<int>bloomDay(n);
-    for (int i=0;i<n;i++){
-        cin>>bloomDay[i];
+    cin >> n;
+    int m, k;
+    cin >> m >> k;
+    vector<int> bloomDay(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> bloomDay[i];
     }
     Solution ob;
-    auto ans = ob.minDays(bloomDay,m,k);
-    cout<<ans;
+    auto ans = ob.minDays(bloomDay, m, k);
+    cout << ans;
     return 0;
 }
