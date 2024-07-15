@@ -8,7 +8,7 @@ using namespace std;
 class Solution {
 public:
   const int q = INT_MAX;
-  vector<int> solve(string text,string pat){
+  vector<int> search(string text,string pat){
       int n = text.size();
       int m = pat.size();
       vector<int> ans;
@@ -53,7 +53,7 @@ signed main()
   string s,t;
   cin>>s>>t;
   Solution ob;
-  auto ans = ob.solve(s,t);
+  auto ans = ob.search(s,t);
   for(auto it:ans){
     cout<<it<<" ";
   }
