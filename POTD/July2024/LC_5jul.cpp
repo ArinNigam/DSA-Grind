@@ -1,5 +1,10 @@
 // Find the Minimum and Maximum Number of Nodes Between Critical Points (Medium)
 
+// Topic: Linked List
+// Expected Time Complexity: O(N)
+// Expected Space Complexity: O(1)
+// URL: https://leetcode.com/problems/find-the-minimum-and-maximum-number-of-nodes-between-critical-points/
+
 // A critical point in a linked list is defined as either a local maxima or a local minima.
 // A node is a local maxima if the current node has a value strictly greater than the previous node and the next node.
 // A node is a local minima if the current node has a value strictly smaller than the previous node and the next node.
@@ -15,95 +20,110 @@
 // The minimum distance is between the fifth and the sixth node. minDistance = 6 - 5 = 1.
 // The maximum distance is between the third and the sixth node. maxDistance = 6 - 3 = 3.
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 //------------------------------------------------------------
 
-struct ListNode {
+struct ListNode
+{
     int val;
-    struct ListNode* next;
-    ListNode(int x) {
+    struct ListNode *next;
+    ListNode(int x)
+    {
         val = x;
         next = NULL;
     }
 };
 
-struct ListNode* buildList(int size){
+struct ListNode *buildList(int size)
+{
     int val;
-    cin>>val;
-    
-    ListNode* head = new ListNode(val);
-    ListNode* tail = head;
-    
-    for (int i=0;i<size-1;i++){
-        cin>>val;
+    cin >> val;
+
+    ListNode *head = new ListNode(val);
+    ListNode *tail = head;
+
+    for (int i = 0; i < size - 1; i++)
+    {
+        cin >> val;
         tail->next = new ListNode(val);
         tail = tail->next;
     }
     return head;
 }
 
-void printList(ListNode *n){
-    while(n){
-        cout<<n->val<<" ";
+void printList(ListNode *n)
+{
+    while (n)
+    {
+        cout << n->val << " ";
         n = n->next;
     }
-    cout<<endl;
+    cout << endl;
 }
 
 //------------------------------------------------------------
 
-class Solution {
+class Solution
+{
 public:
-    vector<int> nodesBetweenCriticalPoints(ListNode* head) {
-        if (head==NULL) return {};
+    vector<int> nodesBetweenCriticalPoints(ListNode *head)
+    {
+        if (head == NULL)
+            return {};
         int minDist = -1;
         int maxDist = -1;
-        
-        ListNode* prev = head;
-        ListNode* curr = head->next;
-        
+
+        ListNode *prev = head;
+        ListNode *curr = head->next;
+
         int i = 0;
         int ind = -1;
         int minInd = -1;
         int prevInd = -1;
-        while(curr->next!=NULL){
-            if((prev->val > curr->val && curr->val < curr->next->val) 
-                || (prev->val < curr->val && curr->val > curr->next->val)){
+        while (curr->next != NULL)
+        {
+            if ((prev->val > curr->val && curr->val < curr->next->val) || (prev->val < curr->val && curr->val > curr->next->val))
+            {
                 prevInd = ind;
                 ind = i;
-                if(minInd==-1){
+                if (minInd == -1)
+                {
                     minInd = i;
                 }
-                
-                if (prevInd!=-1){
-                    if (minDist==-1){
-                        minDist = ind-prevInd;
+
+                if (prevInd != -1)
+                {
+                    if (minDist == -1)
+                    {
+                        minDist = ind - prevInd;
                     }
-                    else{
-                        minDist = min(minDist,ind-prevInd);
+                    else
+                    {
+                        minDist = min(minDist, ind - prevInd);
                     }
-                    maxDist = ind-minInd;
+                    maxDist = ind - minInd;
                 }
             }
             prev = curr;
             curr = curr->next;
             i++;
         }
-        return {minDist,maxDist};
-        
+        return {minDist, maxDist};
     }
 };
 
-signed main(){  
+signed main()
+{
     int n;
-    cin>>n;
-    ListNode* nums = buildList(n);
+    cin >> n;
+    ListNode *nums = buildList(n);
     Solution ob;
     auto res = ob.nodesBetweenCriticalPoints(nums);
-    for(auto it:res){
-        cout<<it<<" ";
+    for (auto it : res)
+    {
+        cout << it << " ";
     }
     return 0;
 }

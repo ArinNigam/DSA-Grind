@@ -1,5 +1,10 @@
 // Crawler Log Folder (Easy)
 
+// Topic: Stack
+// Expected Time Complexity: O(N)
+// Expected Space Complexity: O(N)
+// URL: https://leetcode.com/problems/crawler-log-folder/
+
 // The Leetcode file system keeps a log each time some user performs a change folder operation.
 
 // The operations are described below:
@@ -15,24 +20,30 @@
 // Output: 2
 // Explanation: Use this change folder operation "../" 2 times and go back to the main folder.
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
+class Solution
+{
 public:
-    int minOperations(vector<string>& logs) {
-        stack<string>st;
+    int minOperations(vector<string> &logs)
+    {
+        stack<string> st;
         int n = logs.size();
         int cnt = 0;
-        for(int i=0;i<n;i++){
-            if(logs[i]=="../"){
+        for (int i = 0; i < n; i++)
+        {
+            if (logs[i] == "../")
+            {
                 cnt--;
-                cnt = max(cnt,0);
+                cnt = max(cnt, 0);
             }
-            else if(logs[i]=="./"){
+            else if (logs[i] == "./")
+            {
                 continue;
             }
-            else{
+            else
+            {
                 cnt++;
             }
         }
@@ -41,15 +52,16 @@ public:
 };
 
 signed main()
-{    
+{
     int n;
-    cin>>n;
-    vector<string>nums(n);
-    for (int i=0;i<n;i++){
-        cin>>nums[i];
+    cin >> n;
+    vector<string> nums(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> nums[i];
     }
     Solution ob;
     auto ans = ob.minOperations(nums);
-    cout<<ans;
+    cout << ans;
     return 0;
 }

@@ -1,4 +1,9 @@
  // Create Binary Tree From Descriptions (Medium)
+ 
+// Topic: Tree
+// Expected Time Complexity: O(N)
+// Expected Space Complexity: O(N)
+// URL: https://leetcode.com/problems/create-binary-tree-from-descriptions/
 
 // You are given a 2D integer array descriptions where descriptions[i] = [parenti, childi, isLefti] indicates that parenti is the parent of childi in a binary tree of unique values. Furthermore,
 

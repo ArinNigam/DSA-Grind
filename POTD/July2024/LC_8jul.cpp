@@ -1,5 +1,10 @@
 // Find the Winner of the Circular Game (Medium)
 
+// Topic: Array
+// Expected Time Complexity: O(N)
+// Expected Space Complexity: O(1)
+// URL: https://leetcode.com/problems/find-the-winner-of-the-circular-game/
+
 // There are n friends that are playing a game. The friends are sitting in a circle and are numbered from 1 to n in clockwise order. More formally, moving clockwise from the ith friend brings you to the (i+1)th friend for 1 <= i < n, and moving clockwise from the nth friend brings you to the 1st friend.
 // The rules of the game are as follows:
 // Start at the 1st friend.
@@ -22,30 +27,30 @@
 // 8) Count 2 friends clockwise, which are friends 3 and 5.
 // 9) Friend 5 leaves the circle. Only friend 3 is left, so they are the winner.
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
+class Solution
+{
 public:
-    int findTheWinner(int n, int k) {
+    int findTheWinner(int n, int k)
+    {
         int currFriend;
-        for(int i=1;i<=n;i++){
-            currFriend = ( currFriend + k )%i;
+        for (int i = 1; i <= n; i++)
+        {
+            currFriend = (currFriend + k) % i;
         }
-        return currFriend+1;
+        return currFriend + 1;
     }
 };
 
 signed main()
-{    
-    int n;
-    cin>>n;
-    vector<int>nums(n);
-    for (int i=0;i<n;i++){
-        cin>>nums[i];
-    }
+{
+    int n, k;
+    cin >> n >> k;
+
     Solution ob;
-    auto ans = ob.solve(nums);
-    cout<<ans;
+    auto ans = ob.findTheWinner(n, k);
+    cout << ans;
     return 0;
 }

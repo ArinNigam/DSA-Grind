@@ -1,5 +1,11 @@
 // Robot Collisions (Hard)
 
+// Topic: Stack
+// Expected Time Complexity: O(N)
+// Expected Space Complexity: O(N)
+// URL: https://leetcode.com/problems/robot-collisions/
+
+// You are given three arrays positions, healths, and directions, each of length n.
 // There are n 1-indexed robots, each having a position on a line, health, and movement direction.
 // You are given 0-indexed integer arrays positions, healths, and a string directions (directions[i] is either 'L' for left or 'R' for right). All integers in positions are unique.
 // All robots start moving on the line simultaneously at the same speed in their given directions. If two robots ever share the same position while moving, they will collide.
@@ -12,49 +18,61 @@
 // Output: [2,17,9,15,10]
 // Explanation: No collision occurs in this example, since all robots are moving in the same direction. So, the health of the robots in order from the first robot is returned, [2, 17, 9, 15, 10].
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
+class Solution
+{
 public:
-    vector<int> survivedRobotsHealths(vector<int>& positions, vector<int>& healths, string directions) {
+    vector<int> survivedRobotsHealths(vector<int> &positions, vector<int> &healths, string directions)
+    {
         int n = positions.size();
-        vector<pair<int,int>>vp(n);
-        for(int i=0;i<n;i++){
+        vector<pair<int, int>> vp(n);
+        for (int i = 0; i < n; i++)
+        {
             vp[i].first = positions[i];
             vp[i].second = i;
         }
-        sort(vp.begin(),vp.end());
-        stack<int>st;
-        for(auto ind:vp){
+        sort(vp.begin(), vp.end());
+        stack<int> st;
+        for (auto ind : vp)
+        {
             int i = ind.second;
-            if (directions[i]=='R'){
+            if (directions[i] == 'R')
+            {
                 st.push(i);
             }
-            else{
-                while(!st.empty() && healths[i] > 0){
+            else
+            {
+                while (!st.empty() && healths[i] > 0)
+                {
                     int topInd = st.top();
                     st.pop();
 
-                    if (healths[topInd] > healths[i]){
+                    if (healths[topInd] > healths[i])
+                    {
                         healths[topInd]--;
                         healths[i] = 0;
                         st.push(topInd);
                     }
-                    else if(healths[topInd] < healths[i]){
+                    else if (healths[topInd] < healths[i])
+                    {
                         healths[i]--;
                         healths[topInd] = 0;
                     }
-                    else{
+                    else
+                    {
                         healths[i] = 0;
                         healths[topInd] = 0;
                     }
                 }
             }
         }
-        vector<int>ans;
-        for(int i=0;i<n;i++){
-            if (healths[i] > 0){
+        vector<int> ans;
+        for (int i = 0; i < n; i++)
+        {
+            if (healths[i] > 0)
+            {
                 ans.push_back(healths[i]);
             }
         }
@@ -63,23 +81,26 @@ public:
 };
 
 signed main()
-{    
+{
     int n;
-    cin>>n;
-    vector<int>positions(n),healths(n);
+    cin >> n;
+    vector<int> positions(n), healths(n);
     string directions;
-    for (int i=0;i<n;i++){
-        cin>>positions[i];
+    for (int i = 0; i < n; i++)
+    {
+        cin >> positions[i];
     }
-    for (int i=0;i<n;i++){
-        cin>>healths[i];
+    for (int i = 0; i < n; i++)
+    {
+        cin >> healths[i];
     }
-    cin>>directions;
-    
+    cin >> directions;
+
     Solution ob;
-    auto ans = ob.survivedRobotsHealths(positions,healths,directions);
-    for(auto it:ans){
-        cout<<it<<" ";
+    auto ans = ob.survivedRobotsHealths(positions, healths, directions);
+    for (auto it : ans)
+    {
+        cout << it << " ";
     }
     return 0;
 }
