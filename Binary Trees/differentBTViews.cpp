@@ -150,7 +150,7 @@ public:
             auto it = q.front();
             q.pop();
             TreeNode* node = it.first;
-            int verticalLvl = it.second;\
+            int verticalLvl = it.second;
             mp[verticalLvl].push_back(node->val);
             if (node->left!=NULL){
                 q.push({node->left,verticalLvl-1});
